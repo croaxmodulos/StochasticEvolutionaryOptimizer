@@ -1,7 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import Model.FitnessFunction.ExpFitnessFunction as fitness
+import Model.FitnessFunction.exp_function as fitness
 from mpl_toolkits.mplot3d import Axes3D
 
 # 2D plot
