@@ -14,3 +14,9 @@ class SortedFitnessTable:
     def __getitem__(self, idx):
         return self.table[idx]
 
+    def clear(self):
+        self.table.clear()
+
+    def remove_last(self):
+        if len(self.table) > 0:
+            self.table.pop()

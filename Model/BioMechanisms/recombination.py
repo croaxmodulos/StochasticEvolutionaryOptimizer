@@ -15,14 +15,15 @@ def recombine(individuals):
     params = np.zeros(len(individuals[0].params))
     sigma = np.zeros(len(individuals[0].sigma))
 
+    # recombine parameters array
     for i in range(0, len(params)):
         idx = random.randint(0, parents - 1)
         params[i] = individuals[idx].params[i]
 
+    # recombine sigma array
     for i in range(0, len(sigma)):
         for j in range(0, parents):
             sigma[i] += individuals[j].sigma[i]
-
     sigma /= parents
 
     return Individual(None, params, sigma)

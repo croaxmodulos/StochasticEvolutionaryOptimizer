@@ -21,6 +21,5 @@ class RecombinationTest(unittest.TestCase):
         ind3 = Individual(None, [0.31, 0.32, 0.33, 0.3], [0.031, 0.032, 0.033, 0.034])
 
         newborn = recombine([ind1, ind2, ind3])
-        print(newborn.params)
 
         self.assertTrue(np.abs(np.linalg.norm(newborn.sigma - [0.021, 0.022, 0.023, 0.024])) < error)

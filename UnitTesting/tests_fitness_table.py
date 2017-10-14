@@ -27,3 +27,30 @@ class SortedFitnessTableTest(unittest.TestCase):
 
         for i in range(1, len(self.table)):
             self.assertTrue(self.table[i].fitness <= self.table[i-1].fitness)
+
+    def test_clear_sets_tablesize_to_zero(self):
+        # insert two individuals
+        self.table.add_individual(Individual(15.0, [2.0], [0.2]))
+        self.table.add_individual(Individual(-15.0, [3.0], [0.3]))
+        self.assertEquals(2, len(self.table))
+
+        self.table.clear()
+
+        self.assertEquals(0, len(self.table))
+
+    def test_remove_last_decrease_table_size_by_one(self):
+        # insert two individuals
+        self.table.add_individual(Individual(15.0, [2.0], [0.2]))
+        self.table.add_individual(Individual(-15.0, [3.0], [0.3]))
+        self.assertEquals(2, len(self.table))
+
+        self.table.remove_last()
+
+        self.assertEquals(1, len(self.table))
+
+    def test_remove_last_does_nothing_if_table_size_is_zero(self):
+        self.assertEquals(0, len(self.table))
+
+        self.table.remove_last()
+
+        self.assertEquals(0, len(self.table))
