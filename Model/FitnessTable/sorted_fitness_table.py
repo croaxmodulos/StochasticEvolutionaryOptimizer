@@ -2,6 +2,10 @@ import sortedcontainers
 
 
 class SortedFitnessTable:
+    @classmethod
+    def from_table(cls, table):
+        return sortedcontainers.SortedListWithKey(table, key=lambda val: -val.fitness)
+
     def __init__(self):
         self.table = sortedcontainers.SortedListWithKey(key=lambda val: -val.fitness)
 
