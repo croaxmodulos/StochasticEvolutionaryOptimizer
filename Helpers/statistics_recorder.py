@@ -12,3 +12,10 @@ class StatisticsRecorder:
             t = SortedFitnessTable.from_table(fitness_table)
             self.records.append(t)
 
+    def get_avg_sigma_all_records(self):
+        return [r.get_avg_sigma() for r in self.records]
+
+    def get_population_distances_all_records(self):
+        return [rec.get_distance_between_individuals() for rec in self.records]
+
+

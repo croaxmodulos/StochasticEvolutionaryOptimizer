@@ -62,7 +62,7 @@ class OptimizerNGB:
             if self.statistics_recorder is not None:
                 self.statistics_recorder.record(i, self.fitness_table)
 
-        return self.fitness_table[0], self.statistics_recorder
+        return self.fitness_table, self.statistics_recorder
 
     def print_fitness_table(self):
         for i in range(0, len(self.fitness_table)):

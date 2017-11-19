@@ -29,7 +29,7 @@ fig = plt.figure()
 
 ###
 ax2 = fig.add_subplot(111, projection='3d')
-x = y = np.linspace(-510.0, 512.0, 1000)
+x = y = np.linspace(-510.0, 512.0, 100)
 X, Y = np.meshgrid(x, y)
 
 cmap = matplotlib.cm.get_cmap("jet")

@@ -14,9 +14,9 @@ from Model.Optimizers.NonGenerationBased.parameters_ngb import ParamsNGB
 search_spaces = np.array([[-600, 1000.0],
                           [-600.0, 1100.0]])
 
-max_fitness_calls = 50
-is_sigma_array = False
-initial_sigma = 0.1
+max_fitness_calls = 2
+is_sigma_array = True
+initial_sigma = 0.2
 sigma_min = 0.0001
 sigma_max = 0.35
 initial_table_size = 40
@@ -36,7 +36,7 @@ recombination = StandardRecombination.recombine
 mutation = StandardMutation(params.num_params, sigma_min, sigma_max).mutate
 
 # set up optimization engine
-statistics_recorder = StatisticsRecorder(10)  # or None to disable
+statistics_recorder = StatisticsRecorder(1)  # or None to disable
 engine = OptimizerNGB(params, selection, recombination, mutation, statistics_recorder)
 
 optimization_results = []
@@ -44,6 +44,9 @@ for i in range(0, restarts_num):
     optimization_results.append(engine.optimization_start(fitness_object))
 
 for i in range(0, restarts_num):
-    mapped_params = map_linearly_from_to(optimization_results[i][0].params, [0.0, 1.0], search_spaces)
-    print("fit - {0:.3f}, params - {1}, sigma - {2}".format(optimization_results[i][0].fitness,
-                                                            mapped_params, optimization_results[i][0].sigma))
+    mapped_params = map_linearly_from_to(optimization_results[i][0][0].params, [0.0, 1.0], search_spaces)
+    print("fit - {0:.3f}, params - {1}, sigma - {2}".format(optimization_results[i][0][0].fitness,
+                                                            mapped_params, optimization_results[i][0][0].sigma))
+
+print(len(optimization_results[0][1].records))
+print(optimization_results[0][1].records[0].get_avg_sigma())
