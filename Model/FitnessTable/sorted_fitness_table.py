@@ -31,9 +31,9 @@ class SortedFitnessTable:
     def get_avg_sigma(self):
         return np.sum([np.mean(e.sigma) for e in self.table]) / len(self.table)
 
-    def get_distance_between_individuals(self):
+    def get_cum_distance_between_individuals(self):
         d = 0.0
         for i in range(0, len(self.table)):
-            for j in range(i+1, len(self.table)):
+            for j in range(0, len(self.table)):
                 d += np.linalg.norm(self.table[i].params - self.table[j].params)
         return d
